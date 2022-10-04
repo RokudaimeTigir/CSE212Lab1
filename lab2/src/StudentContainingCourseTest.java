@@ -60,8 +60,9 @@ public class StudentContainingCourseTest {
 			String choice = input.nextLine();
 			if ( choice.equals("1") ) {
 				if (i != 10 ) {
-					student[i] = new StudentContainingCourse();
-					i++;
+					//student[i] = new StudentContainingCourse();
+					//i++;
+					student[i++] = new StudentContainingCourse();
 				}
 				else {
 					System.out.println("Max number of students is reached");
@@ -71,6 +72,10 @@ public class StudentContainingCourseTest {
 				for ( int j = 0; j < i; j++) {
 					student[j].displayInformation();
 				}
+//				for ( int j = 0; j < student.length; j++) {
+//					if ( student j != null)
+//						student[j].displayInformation();
+//				}
 			}
 			else if ( choice.equals("0") ) {
 				System.exit(0);
