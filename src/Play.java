@@ -5,6 +5,7 @@ public class Play {
 	String startTime;
 	String date;
 	int duration;
+	String endTime;
 	
 	public Play() {
 		
@@ -23,7 +24,7 @@ public class Play {
 		//System.out.println("Date: " + this.date);
 		//System.out.println("Duration: " + this.duration);
 		
-		System.out.println( this.eventName + " starts at " + this.startTime +
+		System.out.printf( this.eventName + " which starts at " + this.startTime +
 				" on " + this.date + " and ends at " + this.calculateEndTime() );
 	}
 	
@@ -36,11 +37,11 @@ public class Play {
 		hour = duration + hour;
 		if ( hour > 23 ) {
 			hour = hour - 24;
-			this.startTime = this.startTime.format("%02d:%02d the next day", hour, minute);
-			return this.startTime;
+			this.endTime = this.endTime.format("%02d:%02d the next day", hour, minute);
+			return this.endTime;
 		}
 		
-		this.startTime = this.startTime.format("%02d:%02d", hour, minute);
-		return this.startTime;
+		this.endTime = this.endTime.format("%02d:%02d", hour, minute);
+		return this.endTime;
 	}
 }
