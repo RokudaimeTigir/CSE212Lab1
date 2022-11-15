@@ -1,13 +1,33 @@
+import java.util.Scanner;
+
 //Mert Korkut 20190701004-072
 
-public class Play {
+public class Play implements Displayable {
 	String eventName;
 	String startTime;
 	String date;
 	int duration;
+	String endTime;
+	int audienceCounter = 0;
+	
+	Scanner s = new Scanner(System.in);
 	
 	public Play() {
 		
+		System.out.println("\nEvent Name: ");
+		this.eventName = s.nextLine();
+		
+		System.out.println("Start Time: ");
+		this.startTime = s.nextLine();
+		
+		System.out.println("Date: ");
+		this.date = s.nextLine();
+		
+		System.out.println("Duration: ");
+		this.duration = s.nextInt();
+		s.nextLine();
+		
+		this.endTime = calculateEndTime();
 	}
 	
 	public Play(String eventName, String startTime , String date,int duration) {
@@ -15,7 +35,9 @@ public class Play {
 		this.startTime = startTime;
 		this.date = date;
 		this.duration = duration;
+		this.endTime = calculateEndTime();
 	}
+
 	
 	public void displayInfo() {
 		//System.out.println("Event Name: " + this.eventName);
@@ -23,7 +45,7 @@ public class Play {
 		//System.out.println("Date: " + this.date);
 		//System.out.println("Duration: " + this.duration);
 		
-		System.out.println( this.eventName + " starts at " + this.startTime +
+		System.out.printf( this.eventName + " which starts at " + this.startTime +
 				" on " + this.date + " and ends at " + this.calculateEndTime() );
 	}
 	
@@ -36,11 +58,20 @@ public class Play {
 		hour = duration + hour;
 		if ( hour > 23 ) {
 			hour = hour - 24;
-			this.startTime = this.startTime.format("%02d:%02d the next day", hour, minute);
-			return this.startTime;
+			this.endTime = this.endTime.format("%02d:%02d the next day", hour, minute);
+			return this.endTime;
 		}
 		
-		this.startTime = this.startTime.format("%02d:%02d", hour, minute);
-		return this.startTime;
+		this.endTime = this.endTime.format("%02d:%02d", hour, minute);
+		return this.endTime;
+	}
+	
+	public void otherDisplay() {
+		System.out.println("Play:");
+		System.out.printf("\tName: %s\n", this.eventName);
+		System.out.printf("\tAudiences: %d\n", this.audienceCounter);
+		System.out.printf("\tStart: %s\n", this.startTime);
+		System.out.printf("\tEnd: %s\n", this.endTime);
+		System.out.printf("\tDate: %s\n\n", this.date);
 	}
 }
