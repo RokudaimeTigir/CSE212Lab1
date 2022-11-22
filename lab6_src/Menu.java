@@ -19,6 +19,9 @@ public class Menu {
 		play.add(new Play("Mert","20:00","20.11.2020",2));
 		play.add(new Play("Romeo","20:00","22.11.1990",2));
 		play.add(new Play("Dante","20:00","22.10.2020",2));
+		play.add(new Play("Boccacio","20:00","22.10.2020",2));
+		play.add(new Play("Rekt","21:00","22.10.2020",2));
+		play.add(new Play("Ceket","21:00","22.10.2020",1));
 		Scanner s = new Scanner(System.in);
 		
 		while(true) {

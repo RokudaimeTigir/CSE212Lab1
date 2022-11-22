@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Scanner;
 
 //Mert Korkut 20190701004-072
@@ -97,6 +98,76 @@ public class Play implements Displayable, Comparable<Play>{
 		if( monthCompare != 0)
 			return monthCompare;
 		
-		return (day1-day2);
+		int dayComparator = day1-day2;
+		
+		if( dayComparator != 0)
+			return (day1-day2);
+		
+		return startComparator.compare(this,arg0);
+		
 	}
+	
+	public static Comparator<Play> startComparator = new Comparator<Play>() {
+
+		@Override
+		public int compare(Play arg0, Play arg1) {
+			String[] str1 = arg0.startTime.split(":");
+			int hour1 = Integer.parseInt(str1[0]);
+			int minute1 = Integer.parseInt(str1[1]);
+			
+			String[] str2 = arg1.startTime.split(":");
+			int hour2 = Integer.parseInt(str2[0]);
+			int minute2 = Integer.parseInt(str2[1]);
+			
+			int hourCompare = hour1-hour2;
+			
+			if ( hourCompare != 0)
+				return hourCompare;
+
+			int minuteCompare = minute1-minute2;
+			
+			if (minuteCompare != 0)
+				return minuteCompare;
+			
+			return endComparator.compare(arg0, arg1);
+		}
+		
+	};
+	
+	public static Comparator<Play> endComparator = new Comparator<Play>() {
+
+		@Override
+		public int compare(Play arg0, Play arg1) {
+			String[] str1 = arg0.endTime.split(":");
+			int hour1 = Integer.parseInt(str1[0]);
+			int minute1 = Integer.parseInt(str1[1]);
+			
+			String[] str2 = arg1.endTime.split(":");
+			int hour2 = Integer.parseInt(str2[0]);
+			int minute2 = Integer.parseInt(str2[1]);
+			
+			int hourCompare = hour1-hour2;
+			
+			if ( hourCompare != 0)
+				return hourCompare;
+
+			int minuteCompare = minute1-minute2;
+			
+			if (minuteCompare != 0)
+				return minuteCompare;
+			
+			return nameComparator.compare(arg0, arg1);
+		}
+		
+	};
+	
+	public static Comparator<Play> nameComparator = new Comparator<Play>() {
+
+		@Override
+		public int compare(Play o1, Play o2) {
+			
+			return o1.eventName.compareTo(o2.eventName);
+		}
+		
+	};
 }
